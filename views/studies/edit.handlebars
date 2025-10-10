@@ -1,0 +1,13 @@
+<h1>Editando estudo: {{study.subject}}</h1>
+<form action="/studies/edit" method="POST">
+  <input type="hidden" name="id" value="{{study.id}}">
+  <div class="form-control">
+    <label for="subject">Assunto:</label>
+    <input type="text" name="subject" value="{{study.subject}}" placeholder="Qual matéria você vai estudar?">
+  </div>
+  <div class="form-control">
+    <label for="notes">Anotações:</label>
+    <textarea name="notes" placeholder="Escreva suas anotações aqui...">{{study.notes}}</textarea>
+  </div>
+  <input type="submit" value="Salvar alterações">
+</form>
