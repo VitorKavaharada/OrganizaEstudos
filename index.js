@@ -7,7 +7,7 @@ const conn = require('./db/conn');
 const Study = require('./models/Study');
 const User = require('./models/User');
 const studyRoutes = require('./routes/studyRoutes');
-const authRoutes = require('./routes/authRoutes');
+const authRoutes = require('./routes/authRoutes.js');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
