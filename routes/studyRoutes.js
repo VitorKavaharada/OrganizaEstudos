@@ -1,7 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const authMiddleware = require('../middleware/auth');
 
 const StudyController = require('../controllers/StudyController');
+
+router.use(authMiddleware);
 
 router.get('/add', StudyController.createStudy);
 router.post('/add', StudyController.createStudySave);
