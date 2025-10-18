@@ -11,7 +11,6 @@
         <span class="actions">
           <form action="/studies/updatestatus" method="POST">
             <input type="hidden" name="id" value="{{this.id}}">
-            <input type="hidden" name="completed" value="{{this.completed}}">
             <button type="submit">
               <i class="bi bi-check2"></i>
             </button>
@@ -19,7 +18,7 @@
           <a href="/studies/edit/{{this.id}}">
             <i class="bi bi-pencil-square"></i>
           </a>
-          <form action="/studies/remove" method="POST">
+          <form action="/studies/remove" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir esta tarefa?');">
             <input type="hidden" name="id" value="{{this.id}}">
             <button type="submit">
               <i class="bi bi-x-lg"></i>
