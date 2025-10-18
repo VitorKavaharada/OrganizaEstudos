@@ -23,7 +23,7 @@ module.exports = class StudyController {
   static async removeStudy(req, res) {
 
     const id = req.body.id;
-    await Study.destroy({ where: { id: id } });
+    await Study.destroy({ where: { id: id, userId: req.user.id } });
     res.redirect('/studies');
 
   }
@@ -31,7 +31,7 @@ module.exports = class StudyController {
   static async updateStudy(req, res) {
 
     const id = req.params.id;
-    const study = await Study.findOne({ where: { id: id }, raw: true });
+    const study = await Study.findOne({ where: { id: id, userId: req.user.id }, raw: true });
     res.render('studies/edit', { study });
 
   }
@@ -45,7 +45,7 @@ module.exports = class StudyController {
       notes: req.body.notes
     };
 
-    await Study.update(study, { where: { id: id } });
+    await Study.update(study, { where: { id: id, userId: req.user.id } });
     res.redirect('/studies');
 
   }
@@ -54,18 +54,28 @@ module.exports = class StudyController {
 
     const id = req.body.id;
 
-    const study = {
-      completed: req.body.completed === '0' ? true : false
-    };
+    try {
+    // Busca a tarefa do usuário logado
+    const study = await Study.findOne({where: {id: id,userId: req.user.id,}});
 
-    await Study.update(study, { where: { id: id } });
+    if (!study) {
+      return res.redirect('/studies'); 
+    }
+
+    await study.update({
+      completed: !study.completed, 
+    });
+
     res.redirect('/studies');
-
+    } catch (error) {
+      console.error('Erro ao alternar status da tarefa:', error);
+      res.redirect('/studies');
+    }
   }
 
   static async index(req, res) {
 
-    const studies = await Study.findAll({ raw: true });
+    const studies = await Study.findAll({ raw: true, where: { userId: req.user.id } });
     res.render('studies/all', { studies });
   }
   
