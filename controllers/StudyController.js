@@ -4,9 +4,7 @@ const Study = require('../models/Study');
 module.exports = class StudyController {
 
   static createStudy(req, res) {
-
     res.render('studies/create');
-
   }
 
   static async createStudySave(req, res) {
@@ -14,7 +12,8 @@ module.exports = class StudyController {
     const study = {
       subject: req.body.subject,
       notes: req.body.notes,
-      completed: false
+      completed: false,
+      userId: req.user.id,
     };
 
     await Study.create(study);
