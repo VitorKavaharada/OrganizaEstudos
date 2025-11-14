@@ -4,8 +4,6 @@ const cookieParser = require('cookie-parser');
 const app = express();
 
 const conn = require('./db/conn');
-const Study = require('./models/Study');
-const User = require('./models/User');
 const studyRoutes = require('./routes/studyRoutes');
 const authRoutes = require('./routes/authRoutes.js');
 
@@ -21,7 +19,6 @@ app.set('view engine', 'handlebars');
 app.use('/studies', studyRoutes);
 app.use('/auth', authRoutes);
 
-//Raiz para a página de login
 app.get('/', (req, res) => {
   res.redirect('/auth/login');
 });

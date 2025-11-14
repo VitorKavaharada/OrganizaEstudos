@@ -92,7 +92,7 @@ module.exports = class AuthController {
     const resetToken = jwt.sign({ id: user.id }, JWT_SECRET, { expiresIn: '15m' });
     const resetLink = `${process.env.APP_URL}/auth/reset-password?token=${resetToken}`;
 
-    // Configure o nodemailer
+    // Configurar o nodemailer
     const transporter = nodemailer.createTransport({
       host: process.env.EMAIL_HOST,
       port: process.env.EMAIL_PORT,
@@ -103,7 +103,7 @@ module.exports = class AuthController {
       },
     });
 
-    // Envie o e-mail
+    // e-mail
     try {
 
       await transporter.sendMail({

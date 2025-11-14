@@ -55,7 +55,6 @@ module.exports = class StudyController {
     const id = req.body.id;
 
     try {
-    // Busca a tarefa do usuário logado
     const study = await Study.findOne({where: {id: id,userId: req.user.id,}});
 
     if (!study) {
