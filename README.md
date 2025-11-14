@@ -9,6 +9,8 @@ OrganizaEstudos é uma aplicação web desenvolvida com Node.js que permite gere
 - Criar, editar e excluir registros de estudo
 - Marcar estudos como concluídos
 - Visualizar todos os estudos cadastrados
+- Autenticação JWT
+- Recuperação de conta com uso do Nodemailer
 - Interface simples e responsiva com Handlebars
 
 ---
